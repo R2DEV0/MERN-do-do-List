@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import Form from './components/form';
+import Task from './components/task'
 
 function App() {
+
+  const [list, setList] = useState([]);
+    let task = {
+      desc: "",
+      isComplete: false
+    }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <Form list={list} setList= {setList} task={task} />
+      </div>
+      <div>
+        {list.map((task, i) => (<Task task={task} list={list} setList={setList} index={i} />))} 
+      </div>
+
     </div>
   );
 }
